@@ -83,7 +83,9 @@
         height: '100%',
         borderRadius: '9999px',
         zIndex: '10'
+        cursor: 'pointer'
       }"
+      @click="handleCanvasClick"
     />
 
     <div
@@ -484,6 +486,29 @@ const makeWheelDraggable = () => {
       emit('update:color', colord({ r: red, g: green, b: blue }).toHex())
     }
   })
+}
+
+const handleCanvasClick = (e: MouseEvent) => {
+  const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  let [r, phi] = xy2polar(x - radius.value, y - radius.value);
+  
+  // Limit radial distance to radius
+  r = Math.min(r, radius.value);
+  
+  const [nx, ny] = polar2xy(r, phi);
+  const pos = { x: nx + radius.value, y: ny + radius.value };
+  position.value = pos;
+  
+  const {
+    r: red,
+    g: green,
+    b: blue
+  } = xy2rgb(pos.x, pos.y, radius.value, lightness.value);
+  
+  emit('update:color', colord({ r: red, g: green, b: blue }).toHex());
 }
 
 watchDebounced(
