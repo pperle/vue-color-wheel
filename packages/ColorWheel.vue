@@ -170,7 +170,7 @@ import {
   xy2polar,
   xy2rgb
 } from './utils'
-import { ColorWheelProps, Harmony } from './types'
+import type { ColorWheelProps, Harmony } from './types'
 
 extend([mixPlugin])
 gsap.registerPlugin(Draggable)
@@ -249,7 +249,7 @@ const harmonyPairs = computed(() => {
   }
 
   const monochromaticColors = harmonyPosition.value.map((harmonyHue) => {
-    const rbgString =
+    const rgbString =
       harmonyHue === 360
         ? colord(currentColor.rgb)
             .tints(5)
@@ -268,10 +268,10 @@ const harmonyPairs = computed(() => {
     return {
       x: position.value.x,
       y: position.value.y,
-      h: hsvObj?.h,
-      s: hsvObj?.s,
-      v: hsvObj?.v,
-      rgb: rbgString
+      h: hsvObj?.h ?? hue,
+      s: hsvObj?.s ?? saturation,
+      v: hsvObj?.v ?? value,
+      rgb: rgbString ?? currentColor.rgb
     }
   })
 
@@ -373,6 +373,7 @@ const makeHandleDraggable = () => {
     // console.log('onDrag translate', translate)
     // console.log('onDrag transform', transform)
     const [dx, dy] = translate
+    if (dx === undefined || dy === undefined) return
     let [r, phi] = xy2polar(dx - radius.value, dy - radius.value)
     // Limit radial distance to radius
     r = Math.min(r, radius.value)
