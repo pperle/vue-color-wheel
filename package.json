@@ -24,28 +24,28 @@
   "module": "./lib/vue-color-wheel.js",
   "exports": {
     ".": {
+      "types": "./lib/index.d.ts",
       "import": "./lib/vue-color-wheel.js",
-      "require": "./lib/vue-color-wheel.umd.cjs",
-      "types": "./lib/index.d.ts"
+      "require": "./lib/vue-color-wheel.umd.cjs"
     }
   },
   "types": "./lib/index.d.ts",
   "devDependencies": {
     "@iconify/json": "^2.2.212",
-    "@types/node": "^18.19.33",
+    "@types/node": "^22.12.0",
     "@types/web-bluetooth": "^0.0.20",
-    "@unocss/reset": "^0.55.7",
-    "@vitejs/plugin-vue": "^4.6.2",
+    "@unocss/reset": "^66.6.0",
+    "@vitejs/plugin-vue": "^6.0.3",
     "@vue/tsconfig": "^0.8.1",
     "@vueuse/core": "9.13.0",
     "clean-css": "^5.3.3",
     "highlight.js": "^11.9.0",
     "sass": "^1.77.2",
     "typescript": "^5.6.3",
-    "unocss": "^0.55.7",
+    "unocss": "^66.6.0",
     "unplugin-icons": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "^4.5.3",
+    "vite": "^7.3.1",
     "vue": "^3.4.27",
     "vue-tsc": "^2.0.6"
   },
