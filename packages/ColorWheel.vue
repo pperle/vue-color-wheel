@@ -85,7 +85,7 @@
         width: `${radius * 2}px`,
         height: `${radius * 2}px`,
         borderRadius: '50%',
-        zIndex: '10'
+        zIndex: '10',
         cursor: 'pointer'
       }"
       @click="handleCanvasClick"
